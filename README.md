@@ -20,12 +20,12 @@
 ## Cấu trúc thư mục
 ```text
 dang-ky-hoc-phan/
-├── app/                   # Mã nguồn ứng dụng Java (tầng nghiệp vụ/DAO/JDBC & Java Swing)
-├── database/              # Script migration, thủ tục, hàm, trigger, view, index, seed, queries.sql, backup/restore
-├── docs/                  # Tài liệu đặc tả, ERD, từ điển dữ liệu, báo cáo, slide, biên bản kiểm thử
+├── app/                   # Mã nguồn Java (tầng nghiệp vụ/DAO/JDBC & Swing)
+├── database/              # Migration, SQL, thủ tục, hàm, trigger, view, seed, backup
+├── docs/                  # Đặc tả, ERD, từ điển dữ liệu, báo cáo, slide, kiểm thử
 ├── tests/
-│   └── testcontainers/      # Bộ kiểm thử tự động Testcontainers chạy trên MySQL
-├── .env.example           # Mẫu biến môi trường kết nối CSDL (không chứa thông tin nhạy cảm thật)
-├── docker-compose.yml     # Cấu hình dựng dịch vụ MySQL cục bộ
-├── CONTRIBUTING.md        # Quy ước làm việc nhóm, nhánh, PR và review chéo
-└── README.md              # Tổng quan dự án và hướng dẫn triển khai
+│   └── testcontainers/      # Kiểm thử tự động Testcontainers trên MySQL
+├── .env.example           # Mẫu biến môi trường kết nối CSDL (không chứa bí mật thật)
+├── docker-compose.yml     # Dựng dịch vụ MySQL cục bộ
+├── CONTRIBUTING.md        # Quy định đóng góp mã nguồn, nhánh, PR & review chéo
+└── README.md              # Tổng quan dự án và hướng dẫn khởi tạo
