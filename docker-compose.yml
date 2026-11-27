@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: dk_hoc_phan_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change_me_root_password}
+      MYSQL_DATABASE: ${DB_NAME:-dang_ky_hoc_phan}
+      MYSQL_USER: ${DB_APP_USER:-app_rw}
+      MYSQL_PASSWORD: ${DB_APP_PASSWORD:-change_me_app_password}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
