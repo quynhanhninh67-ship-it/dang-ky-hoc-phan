@@ -1,44 +1,31 @@
 # Hệ thống Đăng ký Học phần (Đề tài DT04)
 
-- **Học phần:** Đồ án Cơ sở dữ liệu — Lớp 75DCHT22
-- **Đơn vị đào tạo:** Bộ môn Hệ thống thông tin – Khoa Công nghệ Thông tin, Trường Đại học Công nghệ Giao thông Vận tải (UTT)
+- **Học phần:** Đồ án Cơ sở dữ liệu (Hệ đào tạo Đại học chính quy — Lớp 75DCHT22)
+- **Đơn vị đào tạo:** Bộ môn Hệ thống thông tin – Khoa Công nghệ thông tin, Trường Đại học Công nghệ Giao thông Vận tải (UTT)
 - **Giảng viên hướng dẫn:** Thầy Trần Đức Thắng
 - **Kho lưu trữ mã nguồn:** https://github.com/quynhanhninh67-ship-it/dang-ky-hoc-phan.git
 
----
+## Thành viên nhóm (05 người)
+1. **Ninh Quỳnh Anh** — Trưởng nhóm / Phân tích nghiệp vụ (BA)
+2. **Nguyễn Hoàng Anh** — Thiết kế Cơ sở dữ liệu (DB Architect)
+3. **Lê Duy Anh** — Lập trình CSDL & Quản trị (DBA)
+4. **Hà Đức Anh** — Phát triển Backend & Tích hợp hệ thống (Java)
+5. **Tạ Đức Anh** — Phát triển Giao diện & Kiểm thử (Java Swing / Kiểm thử)
 
-## 1. Giới thiệu đề tài
-Hệ thống hỗ trợ quản lý xuyên suốt vòng đời học vụ đăng ký học phần: quản lý danh mục đào tạo (khoa, chương trình đào tạo, môn học, môn tiên quyết), học kỳ & đợt đăng ký theo khóa, mở lớp học phần & xếp lịch tuần, đăng ký/hủy học phần chống tranh chấp đồng thời, nhập/công bố/điều chỉnh điểm có nhật ký kiểm toán (`audit_logs`), tính GPA học kỳ/tích lũy (chọn điểm cao nhất khi học lại), chốt học kỳ và báo cáo thống kê.
+## Kiến trúc & Công nghệ
+- **Cơ sở dữ liệu:** MySQL (`utf8mb4`), thiết kế đạt chuẩn tối thiểu 3NF (20 bảng), Stored Procedure, Function, Trigger, View (có view phân quyền), Index, phân quyền vai trò (`db_migrator`, `app_rw`, `reporting_ro`) và sao lưu/phục hồi bằng `mysqldump`.
+- **Tầng ứng dụng & giao diện:** Java / JDBC / DAO / Service và giao diện desktop Java Swing trên NetBeans.
+- **Kiểm thử & triển khai:** Testcontainers trên MySQL thật, `docker-compose.yml` và `.env.example`.
 
-## 2. Công nghệ sử dụng
-- **Hệ quản trị CSDL:** MySQL 8.x (`utf8mb4`)
-- **Ngôn ngữ & Tầng nghiệp vụ:** Java (JDBC / DAO / Service / Transaction)
-- **Giao diện người dùng:** Java Swing (phát triển trên Apache NetBeans)
-- **Kiểm thử tự động:** JUnit & Testcontainers (chạy trên MySQL thật)
-
-## 3. Thành viên nhóm & Phân công (05 thành viên)
-
-| STT | Thành viên | Vai trò chính | Câu SQL phụ trách |
-| :-: | :--- | :--- | :--- |
-| 1 | **Ninh Quỳnh Anh** | Trưởng nhóm / Phân tích nghiệp vụ (BA) | `Q03, Q04, Q11, Q16` |
-| 2 | **Nguyễn Hoàng Anh** | Thiết kế Cơ sở dữ liệu (DB Architect) | `Q01, Q02, Q06, Q20` |
-| 3 | **Lê Duy Anh** | Lập trình CSDL & Quản trị (DBA) | `Q07, Q09, Q10, Q18` |
-| 4 | **Hà Đức Anh** | Phát triển Backend & Tích hợp hệ thống (Java) | `Q05, Q08, Q12, Q13` |
-| 5 | **Tạ Đức Anh** | Phát triển Giao diện (Java Swing) & Kiểm thử | `Q14, Q15, Q17, Q19` |
-
-## 4. Cấu trúc thư mục dự án
-
+## Cấu trúc thư mục
 ```text
 dang-ky-hoc-phan/
-├── database/
-│   ├── migrations/      # Script DDL tạo 20 bảng, khóa, ràng buộc, chỉ mục
-│   ├── routines/        # Stored Procedures, Functions, Triggers, Views
-│   ├── security/        # Phân quyền vai trò CSDL (db_migrator, app_rw, reporting_ro)
-│   ├── seeds/           # Dữ liệu mẫu tiếng Việt (>= 10.000 và >= 100.000 bản ghi)
-│   ├── backup/          # Script sao lưu và phục hồi bằng mysqldump
-│   └── queries.sql      # Bộ 20 truy vấn nghiệp vụ (Q01 - Q20)
-├── src/                 # Mã nguồn Java (DAO, Service, Model, Security, Giao diện Java Swing)
-├── test/                # Bộ kiểm thử tự động Testcontainers & biên bản kiểm thử
-├── docs/                # Đặc tả Use Case, quy tắc BR01-BR17, ERD, từ điển dữ liệu
-├── README.md
-└── CONTRIBUTING.md
+├── app/                   # Mã nguồn ứng dụng Java (tầng nghiệp vụ/DAO/JDBC & Java Swing)
+├── database/              # Script migration, thủ tục, hàm, trigger, view, index, seed, queries.sql, backup/restore
+├── docs/                  # Tài liệu đặc tả, ERD, từ điển dữ liệu, báo cáo, slide, biên bản kiểm thử
+├── tests/
+│   └── testcontainers/      # Bộ kiểm thử tự động Testcontainers chạy trên MySQL
+├── .env.example           # Mẫu biến môi trường kết nối CSDL (không chứa thông tin nhạy cảm thật)
+├── docker-compose.yml     # Cấu hình dựng dịch vụ MySQL cục bộ
+├── CONTRIBUTING.md        # Quy ước làm việc nhóm, nhánh, PR và review chéo
+└── README.md              # Tổng quan dự án và hướng dẫn triển khai
