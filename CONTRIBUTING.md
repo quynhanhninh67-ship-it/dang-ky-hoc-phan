@@ -1,40 +1,34 @@
 # Quy định đóng góp mã nguồn & tài liệu (`CONTRIBUTING.md`)
 
-Tài liệu này quy định cách 05 thành viên nhóm làm việc trên kho GitHub `dang-ky-hoc-phan` để tránh xung đột file, giữ lịch sử commit rõ ràng và đảm bảo mỗi người đều có đóng góp minh bạch khi chấm điểm.
+Tài liệu này thống nhất cách làm việc chung của nhóm trên kho `dang-ky-hoc-phan` để mã nguồn và tài liệu luôn rõ ràng, dễ theo dõi và hạn chế xung đột.
 
-## 1. Phân công & phạm vi làm việc
+## 1. Phân công phụ trách chính
 
-| Thành viên | Vai trò chính | Khu vực phụ trách chính |
+| Thành viên | Vai trò chính | Phạm vi phụ trách |
 | :--- | :--- | :--- |
-| **Ninh Quỳnh Anh** | Trưởng nhóm / BA | Đặc tả nghiệp vụ, quản lý issue/PR, báo cáo, slide, phụ lục AI, câu SQL `Q03, Q04, Q11, Q16`. |
-| **Nguyễn Hoàng Anh** | DB Architect | ERD 3NF, từ điển dữ liệu, migration 20 bảng, seed dữ liệu, câu SQL `Q01, Q02, Q06, Q20`. |
-| **Lê Duy Anh** | DBA | Stored Procedure, Function, Trigger, View, Index, phân quyền, đồng thời, backup/restore, câu SQL `Q07, Q09, Q10, Q18`. |
-| **Hà Đức Anh** | Backend Java | Kết nối JDBC, DAO/Service/Model, transaction, idempotency, phân quyền/bcrypt, câu SQL `Q05, Q08, Q12, Q13`. |
-| **Tạ Đức Anh** | Giao diện & Kiểm thử | Giao diện Java Swing trên NetBeans, test Testcontainers, biên bản `T01–T20`, video demo, câu SQL `Q14, Q15, Q17, Q19`. |
+| **Ninh Quỳnh Anh** | Trưởng nhóm / BA | Đặc tả nghiệp vụ, điều phối công việc & PR, báo cáo, slide, phụ lục AI, truy vấn `Q03`, `Q04`, `Q11`, `Q16` |
+| **Nguyễn Hoàng Anh** | DB Architect | ERD 3NF, từ điển dữ liệu, script tạo bảng, dữ liệu mẫu, truy vấn `Q01`, `Q02`, `Q06`, `Q20` |
+| **Lê Duy Anh** | DBA | Stored Procedure, Function, Trigger, View, Index, phân quyền, xử lý đồng thời, sao lưu/phục hồi, truy vấn `Q07`, `Q09`, `Q10`, `Q18` |
+| **Hà Đức Anh** | Backend Java | Kết nối JDBC, DAO/Service/Model, transaction, idempotency, xác thực & phân quyền, truy vấn `Q05`, `Q08`, `Q12`, `Q13` |
+| **Tạ Đức Anh** | Giao diện & Kiểm thử | Giao diện Java Swing trên NetBeans, kiểm thử Testcontainers, kịch bản kiểm thử `T01–T20`, video demo, truy vấn `Q14`, `Q15`, `Q17`, `Q19` |
 
-## 2. Quy tắc dùng nhánh (`Branch`)
-- **Không push trực tiếp lên `main`** cho các thay đổi lớn hoặc code/SQL mới. Nhánh `main` chỉ nhận phần đã được kiểm tra.
-- Trước khi làm task mới, cập nhật `main` mới nhất rồi tạo nhánh riêng từ `main`:
+## 2. Quy tắc làm việc với nhánh (`Branch`)
+- Không đẩy trực tiếp các thay đổi lớn hoặc mã nguồn/SQL mới lên nhánh `main`.
+- Tạo nhánh riêng từ `main` đã cập nhật mới nhất theo từng loại công việc:
   - `docs/<ten-viec>` — tài liệu, đặc tả, ERD, báo cáo
-  - `db/<ten-viec>` — migration, thủ tục, hàm, trigger, view, index, seed, queries
-  - `feat/<ten-viec>` — code Java, giao diện Swing
-  - `test/<ten-viec>` — kiểm thử tự động / kịch bản kiểm thử
+  - `db/<ten-viec>` — script CSDL, thủ tục, hàm, trigger, view, index, dữ liệu mẫu, truy vấn
+  - `feat/<ten-viec>` — mã nguồn Java, giao diện Swing
+  - `test/<ten-viec>` — kiểm thử tự động và kịch bản kiểm thử
 
 ## 3. Quy tắc Commit
-- **Mỗi người bắt buộc dùng tài khoản GitHub cá nhân** để commit phần việc của mình.
-- Viết commit message rõ ràng, đúng nội dung, ưu tiên tiếng Việt không dấu hoặc tiếng Anh:
-  - `docs: them dac ta 21 use case va 17 quy tac nghiep vu`
-  - `db: tao migration 20 bang tren MySQL`
-  - `feat: hoan thien man hinh dang ky hoc phan Swing`
-  - `test: them test 50 sinh vien tranh 1 cho trong`
+- Mỗi thành viên sử dụng tài khoản GitHub cá nhân khi thực hiện commit.
+- Đặt thông điệp commit ngắn gọn, đúng nội dung thay đổi:
+  - `docs: cap nhat dac ta va tai lieu du an`
+  - `db: them script tao bang va du lieu mau`
+  - `feat: hoan thien chuc nang dang ky hoc phan`
+  - `test: them testcontainers kiem tra nghiep vu`
 
-## 4. Pull Request (PR) & Review chéo
-- Hoàn thành task thì mở **Pull Request** vào `main` và gắn với task/issue trên **GitHub Projects**.
-- Mỗi PR cần ít nhất **01 người review chéo** trước khi merge:
-  - Tài liệu / đặc tả: **Quỳnh Anh** ↔ **Hoàng Anh**
-  - CSDL / SQL: **Hoàng Anh** ↔ **Duy Anh**
-  - Java / Swing / Test: **Hà Đức Anh** ↔ **Tạ Đức Anh**
-
-## 5. Lưu ý bắt buộc
-- **Không đẩy mật khẩu thật, API key hoặc file cấu hình cá nhân** lên GitHub.
-- Nếu sửa tên bảng, tên cột hoặc tham số thủ tục/hàm CSDL, phải báo ngay cho cả nhóm để đồng bộ code và từ điển dữ liệu.
+## 4. Quy trình Pull Request & Review chéo
+- Khi hoàn thành một phần việc trên nhánh riêng, mở **Pull Request (PR)** vào `main` và ghi rõ nội dung thay đổi.
+- Mỗi PR cần ít nhất **01 thành viên review chéo** trước khi gộp vào `main`.
+- Kiểm tra kỹ không để lộ mật khẩu thật, thông tin nhạy cảm hay file `.env` cá nhân trước khi mở PR.
