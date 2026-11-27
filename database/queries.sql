@@ -1,0 +1,1 @@
+-- File lưu các câu truy vấn SQL phục vụ báo cáo, thống kê và kiểm tra dữ liệu
